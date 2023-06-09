@@ -1,0 +1,37 @@
+Table users {
+  id int [pk, increment]
+  username varchar
+  email varchar
+  password varchar
+}
+
+Table todos {
+  id int [pk, increment]
+  title varchar
+  description text
+  completed boolean
+  userId int
+  categoryId int
+}
+
+Table categories {
+  id int [pk, increment]
+  name varchar
+}
+
+Table subcategories {
+  id int [pk, increment]
+  name varchar
+}
+
+Ref: users.id < todos.userId
+Ref: categories.id < todos.categoryId
+
+Table todo_subcategories {
+  id int [pk, increment]
+  todoId int
+  subcategoryId int
+}
+
+Ref: todos.id < todo_subcategories.todoId
+Ref: subcategories.id < todo_subcategories.subcategoryId
